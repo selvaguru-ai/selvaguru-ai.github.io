@@ -64,9 +64,37 @@ a:hover { color: #f6dc96; }
 .nav a { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-2); text-decoration: none; padding: 6px 0; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--text); }
 
-/* Phone frame */
-.phone { margin: 0; flex: 0 0 auto; width: var(--w, 260px); aspect-ratio: 9 / 19.55; border-radius: calc(var(--w, 260px) * 0.16); padding: calc(var(--w, 260px) * 0.035); background: #131a16; border: 1px solid #34413a; box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6); }
-.phone img { width: 100%; height: 100%; object-fit: cover; border-radius: calc(var(--w, 260px) * 0.13); }
+/* Phone frame: modelled on a current iPhone. Thin black bezel, titanium edge,
+   side buttons, Dynamic Island, and a screen at the screenshots' exact 1320:2868 shape. */
+.phone {
+  --b: calc(var(--w, 260px) * 0.03);           /* bezel */
+  --sr: calc(var(--w, 260px) * 0.135);         /* screen corner radius */
+  position: relative;
+  margin: 0;
+  flex: 0 0 auto;
+  width: var(--w, 260px);
+  padding: var(--b);
+  border-radius: calc(var(--sr) + var(--b));
+  background: #050505;
+  box-shadow:
+    0 0 0 1px #1c1d1d,
+    0 0 0 calc(var(--w, 260px) * 0.011) #8a8f8c,
+    0 0 0 calc(var(--w, 260px) * 0.014) #2f3231,
+    0 40px 80px rgba(0, 0, 0, 0.6);
+}
+.phone picture { position: relative; display: block; aspect-ratio: 1320 / 2868; border-radius: var(--sr); overflow: hidden; background: #000; }
+.phone img { width: 100%; height: 100%; object-fit: cover; }
+.phone picture::after { /* Dynamic Island */
+  content: ""; position: absolute; left: 50%; top: 1.3%; transform: translateX(-50%);
+  width: 31%; height: 0; padding-bottom: 9.2%; border-radius: 999px; background: #000;
+}
+.phone.has-island picture::after { display: none; } /* screenshot already shows it */
+.phone::before, .phone::after { content: ""; position: absolute; width: calc(var(--w, 260px) * 0.014); background: #6f7471; }
+.phone::before { right: calc(var(--w, 260px) * -0.024); top: 27%; height: 11%; border-radius: 0 3px 3px 0; } /* side button */
+.phone::after { /* action button, volume up, volume down */
+  left: calc(var(--w, 260px) * -0.024); top: 17%; height: calc(var(--w, 260px) * 0.1); border-radius: 3px 0 0 3px;
+  box-shadow: 0 calc(var(--w, 260px) * 0.2) 0 0 #6f7471, 0 calc(var(--w, 260px) * 0.38) 0 0 #6f7471;
+}
 
 /* Hero stage */
 .hero { position: relative; padding: 40px 0 96px; background: radial-gradient(ellipse 60% 55% at 50% 0%, rgba(232, 240, 235, 0.13), rgba(6, 8, 7, 0) 70%); }
@@ -117,7 +145,7 @@ a:hover { color: #f6dc96; }
 /* Loud moment */
 .slogan { position: relative; overflow: hidden; background: #1fbf78; padding: 120px 0; display: grid; place-items: center; }
 .slogan-text { position: absolute; inset: 0; margin: 0; display: grid; place-items: center; text-align: center; font-weight: 900; font-stretch: 62%; font-size: clamp(88px, 17vw, 270px); line-height: 0.82; text-transform: uppercase; color: #8af0bd; filter: blur(5px); opacity: .85; will-change: transform; pointer-events: none; }
-.slogan .phone { --w: 224px; position: relative; border-color: #0a4d31; background: #0d1a14; box-shadow: 0 40px 70px rgba(0, 40, 22, 0.55); }
+.slogan .phone { --w: 224px; }
 .motion .slogan .phone { animation: float 6s ease-in-out infinite; }
 
 /* Promises */
