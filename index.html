@@ -1,540 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>App Pattarai — an app workshop</title>
-    <meta
-      name="description"
-      content="App Pattarai is Selvaguru K’s app workshop. We design and build learning tools, machine-learning products, and interfaces you can actually use."
-    />
-    <link rel="canonical" href="https://selvaguru-ai.github.io/" />
-    <meta property="og:title" content="App Pattarai — an app workshop" />
-    <meta
-      property="og:description"
-      content="Learning tools, machine-learning products, and interfaces, built by Selvaguru K."
-    />
-    <meta property="og:url" content="https://selvaguru-ai.github.io/" />
-    <meta property="og:type" content="website" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,620&family=Noto+Sans+Tamil:wght@500&family=Outfit:wght@380;500;640&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --ink: #1c1712;
-        --ink-soft: #4a4136;
-        --paper: #f3eadc;
-        --paper-deep: #e7dcc8;
-        --oxide: #9d341f;
-        --brass: #8d6840;
-        --line: rgba(28, 23, 18, 0.16);
-        --shadow: 0 18px 40px rgba(28, 23, 18, 0.08);
-      }
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AppPattarai</title>
+<meta name="description" content="AppPattarai builds focused iPhone and iPad apps, starting with Tree Decor AR.">
+<meta name="theme-color" content="#060807">
+<meta property="og:title" content="AppPattarai">
+<meta property="og:description" content="Focused iPhone and iPad apps, starting with Tree Decor AR.">
+<meta property="og:image" content="assets/img/tree-place.jpg">
+<link rel="icon" href="assets/img/tree-decor-ar-icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
-      * {
-        box-sizing: border-box;
-      }
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="AppPattarai home">
+      <span class="brand-mark" aria-hidden="true">AP</span>
+      <span class="brand-name">APPPATTARAI</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#apps">Apps</a>
+      <a href="tree-decor-ar/">Support</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        overflow-wrap: break-word;
-        color: var(--ink);
-        background:
-          radial-gradient(circle at 12% -10%, rgba(157, 52, 31, 0.08), transparent 32%),
-          linear-gradient(180deg, #f7f1e6 0%, var(--paper) 28%, #efe4d2 100%);
-        font-family: Outfit, "Avenir Next", "Segoe UI", sans-serif;
-        font-weight: 380;
-        line-height: 1.5;
-      }
-
-      a {
-        color: inherit;
-      }
-
-      .skip {
-        position: absolute;
-        left: 1rem;
-        top: -4rem;
-        background: var(--ink);
-        color: var(--paper);
-        padding: 0.6rem 0.9rem;
-        z-index: 5;
-      }
-
-      .skip:focus {
-        top: 1rem;
-      }
-
-      .wrap {
-        width: min(1120px, calc(100% - 2.4rem));
-        margin: 0 auto;
-      }
-
-      header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1.5rem;
-        padding: 1.35rem 0 0.4rem;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        text-decoration: none;
-      }
-
-      .mark {
-        width: 2.4rem;
-        height: 2.4rem;
-        display: grid;
-        place-items: center;
-        background: var(--ink);
-        color: var(--paper);
-        font-family: Fraunces, Georgia, serif;
-        font-weight: 620;
-        letter-spacing: -0.04em;
-      }
-
-      .brand-name {
-        font-family: Fraunces, Georgia, serif;
-        font-size: 1.15rem;
-        font-weight: 620;
-        letter-spacing: -0.03em;
-      }
-
-      .brand small {
-        display: block;
-        color: var(--brass);
-        font-family: "Noto Sans Tamil", Outfit, sans-serif;
-        font-size: 0.78rem;
-        font-weight: 500;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-
-      nav {
-        display: flex;
-        gap: 1.35rem;
-      }
-
-      nav a {
-        text-decoration: none;
-        font-size: 0.95rem;
-        font-weight: 500;
-      }
-
-      nav a:hover,
-      nav a:focus-visible {
-        color: var(--oxide);
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: 1.4fr 0.8fr;
-        gap: 3rem;
-        align-items: end;
-        padding: 4.5rem 0 3.5rem;
-      }
-
-      .eyebrow {
-        margin: 0 0 0.8rem;
-        color: var(--oxide);
-        font-size: 0.78rem;
-        font-weight: 640;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        margin: 0;
-        font-family: Fraunces, Georgia, serif;
-        font-weight: 560;
-        font-size: clamp(4.2rem, 9vw, 7.4rem);
-        line-height: 0.86;
-        letter-spacing: -0.055em;
-      }
-
-      h1 span {
-        display: block;
-      }
-
-      .lede {
-        max-width: 38rem;
-        margin: 1.5rem 0 0;
-        color: var(--ink-soft);
-        font-size: 1.22rem;
-      }
-
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-        margin-top: 1.8rem;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        min-height: 2.8rem;
-        padding: 0.55rem 1rem;
-        text-decoration: none;
-        font-weight: 640;
-        border: 1px solid var(--ink);
-      }
-
-      .button.solid {
-        background: var(--ink);
-        color: var(--paper);
-      }
-
-      .button.solid:hover,
-      .button.solid:focus-visible {
-        background: var(--oxide);
-        border-color: var(--oxide);
-      }
-
-      .button.ghost:hover,
-      .button.ghost:focus-visible {
-        background: var(--ink);
-        color: var(--paper);
-      }
-
-      .ticket {
-        background: #fffaf2;
-        border: 1px solid var(--line);
-        box-shadow: var(--shadow);
-        padding: 1.3rem 1.3rem 0.4rem;
-      }
-
-      .ticket p {
-        margin: 0 0 1rem;
-        color: var(--brass);
-        font-size: 0.75rem;
-        font-weight: 640;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-      }
-
-      .ticket ol {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .ticket li {
-        display: grid;
-        grid-template-columns: auto minmax(0, 1fr);
-        gap: 0.85rem;
-        padding: 0.95rem 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .ticket strong {
-        display: block;
-        font-weight: 640;
-      }
-
-      .ticket span {
-        color: var(--ink-soft);
-        font-size: 0.92rem;
-      }
-
-      .num {
-        font-family: Fraunces, Georgia, serif;
-        color: var(--oxide);
-      }
-
-      section {
-        padding: 3.2rem 0;
-      }
-
-      .section-label {
-        margin: 0 0 1.4rem;
-        font-size: 0.78rem;
-        font-weight: 640;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--brass);
-      }
-
-      .bench {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        border-top: 1px solid var(--ink);
-      }
-
-      .bench article {
-        padding: 1.4rem 1.3rem 0.2rem 0;
-      }
-
-      .bench article + article {
-        padding-left: 1.3rem;
-        border-left: 1px solid var(--line);
-      }
-
-      .bench article,
-      .work-piece,
-      .about,
-      .ticket {
-        min-width: 0;
-      }
-
-      h2 {
-        margin: 0.35rem 0 0.45rem;
-        font-family: Fraunces, Georgia, serif;
-        font-size: clamp(1.8rem, 3vw, 2.4rem);
-        font-weight: 560;
-        letter-spacing: -0.04em;
-        line-height: 1;
-      }
-
-      .bench p,
-      .about p,
-      .work p {
-        color: var(--ink-soft);
-      }
-
-      .work-piece {
-        display: grid;
-        grid-template-columns: 0.7fr 1.3fr;
-        gap: 2rem;
-        padding: 1.6rem 0 0.4rem;
-        border-top: 1px solid var(--ink);
-        text-decoration: none;
-      }
-
-      .work-piece:hover h2,
-      .work-piece:focus-visible h2 {
-        color: var(--oxide);
-      }
-
-      .work-kicker {
-        margin: 0;
-        font-size: 0.78rem;
-        font-weight: 640;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-
-      .go {
-        display: inline-block;
-        margin-top: 0.4rem;
-        font-weight: 640;
-      }
-
-      .about {
-        display: grid;
-        grid-template-columns: 0.7fr 1.3fr;
-        gap: 2rem;
-        border-top: 1px solid var(--ink);
-        padding-top: 1.6rem;
-      }
-
-      footer {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 1.2rem 0 2.4rem;
-        border-top: 1px solid var(--line);
-        color: var(--ink-soft);
-        font-size: 0.92rem;
-      }
-
-      footer a {
-        font-weight: 640;
-        color: var(--ink);
-      }
-
-      @media (max-width: 800px) {
-        header,
-        .hero,
-        .bench,
-        .work-piece,
-        .about,
-        footer {
-          display: block;
-        }
-
-        nav {
-          margin-top: 0.8rem;
-        }
-
-        .hero {
-          padding-top: 2.6rem;
-        }
-
-        .ticket {
-          margin-top: 2rem;
-        }
-
-        .bench article,
-        .bench article + article {
-          padding: 1.2rem 0;
-          border-left: 0;
-          border-top: 1px solid var(--line);
-        }
-
-        .work-piece h2,
-        .about h2 {
-          margin-top: 0.6rem;
-        }
-
-        footer {
-          padding-bottom: 2rem;
-        }
-
-        footer p + p {
-          margin-top: 0.4rem;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <a class="skip" href="#work">Skip to work</a>
-    <div class="wrap">
-      <header>
-        <a class="brand" href="#top">
-          <span class="mark" aria-hidden="true">Ap</span>
-          <span>
-            <span class="brand-name">App Pattarai</span>
-            <small>பட்டறை</small>
-          </span>
-        </a>
-        <nav aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#practice">Practice</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
-
-      <main id="top">
-        <section class="hero">
-          <div>
-            <p class="eyebrow">An app workshop</p>
-            <h1>
-              <span>App</span>
-              <span>Pattarai.</span>
-            </h1>
-            <p class="lede">
-              Selvaguru K designs and builds software with a workshop habit:
-              learning tools you can watch, machine-learning products with a
-              job to do, and interfaces that stay plain enough to use.
-            </p>
-            <div class="actions">
-              <a class="button solid" href="#work">See the work</a>
-              <a class="button ghost" href="https://github.com/selvaguru-ai">GitHub</a>
-            </div>
-          </div>
-          <aside class="ticket" aria-label="What the workshop takes on">
-            <p>On the bench</p>
-            <ol>
-              <li>
-                <span class="num">01</span>
-                <div>
-                  <strong>Learning tools</strong>
-                  <span>Ideas shown in motion, in plain language.</span>
-                </div>
-              </li>
-              <li>
-                <span class="num">02</span>
-                <div>
-                  <strong>Machine learning</strong>
-                  <span>Models aimed at language, documents, and decisions.</span>
-                </div>
-              </li>
-              <li>
-                <span class="num">03</span>
-                <div>
-                  <strong>Product interfaces</strong>
-                  <span>Web and mobile screens built to ship.</span>
-                </div>
-              </li>
-            </ol>
-          </aside>
-        </section>
-
-        <section id="work">
-          <p class="section-label">Selected work</p>
-          <a class="work-piece" href="https://ai-in-motion-beta.vercel.app">
-            <p class="work-kicker">Live</p>
-            <div>
-              <h2>AI in Motion</h2>
-              <p>
-                A visual learning playground: fourteen lessons that teach how
-                AI behaves, with animation and simple English.
-              </p>
-              <span class="go">Open the app</span>
-            </div>
-          </a>
-        </section>
-
-        <section id="practice">
-          <p class="section-label">Practice</p>
-          <div class="bench">
-            <article>
-              <p class="num">01</p>
-              <h2>Show the idea</h2>
-              <p>
-                Lessons and explainers where the mechanism moves, so a person
-                can see the step instead of reading around it.
-              </p>
-            </article>
-            <article>
-              <p class="num">02</p>
-              <h2>Put a model to work</h2>
-              <p>
-                Machine learning for language and practical tools, kept close
-                to the task a person actually has.
-              </p>
-            </article>
-            <article>
-              <p class="num">03</p>
-              <h2>Ship the surface</h2>
-              <p>
-                Websites and product screens with a clear first action, built
-                so they can leave the bench.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section class="about" id="contact">
-          <p class="section-label">The workshop</p>
-          <div>
-            <h2>A one-person bench in the USA.</h2>
-            <p>
-              App Pattarai is the workshop name. Pattarai is the Tamil word
-              for workshop. The person at the bench is Selvaguru K, a
-              programmer who builds websites and works with machine learning.
-            </p>
-            <p>
-              New work starts with a note on GitHub:
-              <a href="https://github.com/selvaguru-ai">github.com/selvaguru-ai</a>.
-            </p>
-          </div>
-        </section>
-      </main>
-
-      <footer>
-        <p>App Pattarai · 2026</p>
-        <p><a href="https://github.com/selvaguru-ai/selvaguru-ai.github.io">Source</a></p>
-      </footer>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-copy">
+      <p class="label">A small app workshop · Pattarai</p>
+      <h1 id="hero-title" class="display">Apps you can<br>hold up to the room</h1>
+      <p class="hero-lede">AppPattarai builds focused iPhone and iPad apps. Each one does a single job well, with no accounts and nothing you make leaving your device.</p>
     </div>
-  </body>
+
+    <div id="apps" class="stage">
+      <div class="ghost left" aria-hidden="true"><span>In the workshop</span></div>
+      <div class="ghost right" aria-hidden="true"><span>Next app</span></div>
+      <div class="spot" aria-hidden="true"></div>
+      <div class="pedestal" aria-hidden="true"><div class="pedestal-top"></div><div class="pedestal-base"></div></div>
+      <figure class="phone hero-phone">
+        <picture>
+          <source srcset="assets/img/tree-place.webp" type="image/webp">
+          <img src="assets/img/tree-place.jpg" width="780" height="1695" alt="Tree Decor AR placing a decorated 5 ft Christmas tree in front of a sofa">
+        </picture>
+      </figure>
+    </div>
+
+    <div class="wrap stage-title">
+      <h2 class="display">Tree Decor AR</h2>
+      <p>Place a life-size Christmas tree in your room and decorate it before you buy a thing.</p>
+      <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="btn-row">
+        <a class="btn solid" href="tree-decor-ar/">About the app &amp; support</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" aria-labelledby="story-title">
+    <div class="wrap story-grid">
+      <div class="story-copy">
+        <div class="app-id reveal">
+          <img src="assets/img/tree-decor-ar-icon.png" width="64" height="64" alt="Tree Decor AR app icon">
+          <div>
+            <p class="label">iPhone &amp; iPad · Free</p>
+            <strong id="story-title">Tree Decor AR</strong>
+          </div>
+        </div>
+        <div class="point reveal">
+          <h3 class="display">Life-size<br>in your room</h3>
+          <p>Pick 4 to 8 ft, measured from the floor to the top of the topper. A 6 ft tree stands at 1.83 m on your real floor.</p>
+        </div>
+        <div class="point reveal">
+          <h3 class="display">Decorate<br>piece by piece</h3>
+          <p>Add, move and remove balls, bells, bows, toys, lights and garland. Undo any change. Choose a star, angel or bow on top.</p>
+        </div>
+        <div class="point reveal">
+          <h3 class="display">A shopping list<br>for every ornament</h3>
+          <p>When you finish, save a photo of the tree in your room and get counts and colors for everything you used.</p>
+        </div>
+      </div>
+      <div class="story-phones">
+        <figure class="phone a">
+          <picture>
+            <source srcset="assets/img/tree-decorate.webp" type="image/webp">
+            <img src="assets/img/tree-decorate.jpg" width="780" height="1695" loading="lazy" alt="Decorating the tree with a ribbon bow selected">
+          </picture>
+        </figure>
+        <figure class="phone b">
+          <picture>
+            <source srcset="assets/img/tree-ready.webp" type="image/webp">
+            <img src="assets/img/tree-ready.jpg" width="780" height="1695" loading="lazy" alt="Finished tree photo with a shopping list of ornaments">
+          </picture>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="slogan" aria-label="Try before you buy">
+    <p class="slogan-text" aria-hidden="true">Try before<br>you buy</p>
+    <figure class="phone">
+      <picture>
+        <source srcset="assets/img/tree-setup.webp" type="image/webp">
+        <img src="assets/img/tree-setup.jpg" width="780" height="1695" loading="lazy" alt="Tree setup screen with height and style choices">
+      </picture>
+    </figure>
+  </section>
+
+  <section class="promises" aria-label="How our apps work">
+    <div class="wrap promise-grid">
+      <div class="promise reveal">
+        <p class="label">No account</p>
+        <p>Open the app and start. There is nothing to sign up for.</p>
+      </div>
+      <div class="promise reveal">
+        <p class="label">Stays on your device</p>
+        <p>Designs are saved on your iPhone or iPad. No analytics, no ads, no tracking.</p>
+      </div>
+      <div class="promise reveal">
+        <p class="label">Real scale</p>
+        <p>The tree is placed on your real floor with ARKit, so the height you pick is the height you see.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <h2 id="contact-title" class="display">Need a hand?</h2>
+      <p>Questions, bugs or ideas for an app. Include your device model and iOS version.</p>
+      <div class="email-row">
+        <a class="email" href="mailto:bhuvanashere@gmail.com">bhuvanashere@gmail.com</a>
+        <button class="copy-btn" type="button" data-copy="bhuvanashere@gmail.com">Copy</button>
+      </div>
+      <div class="btn-row">
+        <a class="btn solid" href="tree-decor-ar/">Tree Decor AR support</a>
+        <a class="btn ghosted" href="tree-decor-ar/privacy/">Privacy policy</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 AppPattarai</span>
+    <nav aria-label="Footer">
+      <a href="tree-decor-ar/">Tree Decor AR</a>
+      <a href="tree-decor-ar/privacy/">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
 </html>
